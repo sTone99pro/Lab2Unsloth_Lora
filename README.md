@@ -8,11 +8,11 @@ Checkpoints are saved to Google Drive during training, and the final model is me
 output_dir = "/content/drive/MyDrive/llm_checkpoints"
 save_steps = 50,          # save every 50 steps
 save_total_limit = 2,     # keep only 2 checkpoints
-
+```
 
 ### 2.Merge LoRA Weights
 
-
+```
 BASE_MODEL = "unsloth/Llama-3.2-1B-Instruct"
 LORA_PATH = "Path"
 
@@ -27,10 +27,21 @@ merged_model = model.merge_and_unload()
 merged_model.save_pretrained("merged_model")
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 tokenizer.save_pretrained("merged_model")
-
+```
 ### 3.Convert to GGUF (q8_0) using llama.cpp
+```
 python convert-hf-to-gguf.py ../merged_model \
     --outfile llama-finetuned-q8_0.gguf \
     --outtype q8_0
-
+```
 ### 4.Upload to Huggingface
+```
+from huggingface_hub import upload_file
+
+upload_file(
+    path_or_fileobj="/Users/pppanda/model.q8_0.gguf",   
+    path_in_repo="model.q8_0.gguf",                      
+    repo_id="pppanda0728/llm1B",                          
+    token="",             
+)
+```

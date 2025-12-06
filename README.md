@@ -4,11 +4,11 @@
 Checkpoints are saved to Google Drive during training, and the final model is merged and converted to GGUF (q8_0) for inference with llama.cpp.
 
 ### 1.Checkpoint Saving
-''' drive.mount('/content/drive')
+```drive.mount('/content/drive')
 output_dir = "/content/drive/MyDrive/llm_checkpoints"
 save_steps = 50,          # save every 50 steps
 save_total_limit = 2,     # keep only 2 checkpoints
-'''
+
 
 ### 2.Merge LoRA Weights
 

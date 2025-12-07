@@ -1,0 +1,2 @@
+total_samples,base_wins,finetuned_wins,ties,finetuned_win_rate(excl_tie),base_win_rate(excl_tie)
+30,10,20,0,0.667,0.333
